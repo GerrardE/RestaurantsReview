@@ -89,6 +89,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = restaurant.name + ' restaurant image.';
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
@@ -147,27 +148,39 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  * Create review HTML and add it to the webpage.
  */
 createReviewHTML = (review) => {
-  const li = document.createElement('li');
+   const li = document.createElement('li');
+  const rhead = document.createElement('div');
+  rhead.className = 'row review-header'
+  const rbody = document.createElement('div');
+  rbody.className = 'review-body'
+  const nDiv = document.createElement('div');
+  nDiv.className = 'col-5'
   const name = document.createElement('p');
-  name.setAttribute('class', 'name');
   name.innerHTML = review.name;
-  li.appendChild(name);
+  name.className = 'name'
+  nDiv.appendChild(name);
+  rhead.appendChild(nDiv);
 
+  const dateDiv = document.createElement('div');
+  dateDiv.className = 'col-7'
   const date = document.createElement('p');
-  date.setAttribute('class', 'date');
   date.innerHTML = review.date;
-  li.appendChild(date);
+  date.className = 'date'
+  dateDiv.appendChild(date);
+  rhead.appendChild(dateDiv);
 
   const rating = document.createElement('p');
-  rating.setAttribute('class', 'rating');
   rating.innerHTML = `Rating: ${review.rating}`;
-  li.appendChild(rating);
+  rating.className = 'review-rating'
+  rbody.appendChild(rating);
 
   const comments = document.createElement('p');
-  comments.setAttribute('class', 'comments');
   comments.innerHTML = review.comments;
-  li.appendChild(comments);
+  comments.className = 'review-comment'
+  rbody.appendChild(comments);
 
+  li.appendChild(rhead);
+  li.appendChild(rbody);
   return li;
 }
 
@@ -177,7 +190,11 @@ createReviewHTML = (review) => {
 fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
-  li.innerHTML = restaurant.name;
+  const restaurantLink = document.createElement('a');
+  restaurantLink.innerHTML = restaurant.name;
+  restaurantLink.href = DBHelper.urlForRestaurant(restaurant);
+  restaurantLink.setAttribute("aria-current","page");
+  li.append(restaurantLink)
   breadcrumb.appendChild(li);
 }
 
