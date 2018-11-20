@@ -2,7 +2,9 @@
 console.log('Service worker Registered');
 
 // install the service worker
+//listen for that installation event:
 self.addEventListener('install', (event) => {
+    //wait till installation is complete:
     event.waitUntil(
         caches.open('versionOne').then(function(cache){
             //store all files required to operate seamlessly in an array
@@ -30,17 +32,17 @@ self.addEventListener('install', (event) => {
     )
 });
 
-
+//listen for fetch events
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request).then(function(response){
+            //act based on response:
             if(response) {
-                console.log('Found ', event.request, 'in cache');
                 return response;
             } else {
-                console.log('Could not find', event.request, 'in cache');
                 return fetch(event.request)
                 .then(function(response){
+                    //avoid using same response by cloning it:
                     let respond = response.clone();
                     caches.open('versionOne').then(function(cache){
                         cache.put(event.request, respond);
