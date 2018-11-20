@@ -3,7 +3,7 @@ console.log('Service worker Registered');
 
 // install the service worker
 //listen for that installation event:
-self.addEventListener('install', (event) => {
+self.addEventListener('install', function (event) {
     //wait till installation is complete:
     event.waitUntil(
         caches.open('versionOne').then(function(cache){
@@ -33,7 +33,7 @@ self.addEventListener('install', (event) => {
 });
 
 //listen for fetch events
-self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', function(event) {
     event.respondWith(
         caches.match(event.request).then(function(response){
             //act based on response:
