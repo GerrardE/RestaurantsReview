@@ -51,10 +51,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   text-align: center;
   text-transform: uppercase;
 }
-/*=== Responsive flex box ===*
-.mast{
-  width: 100%;
-}
+
 /* ====================== Navigation ====================== */
 nav {
   height: 80px;
@@ -104,17 +101,21 @@ nav h1 a {
   color: #01447e;
   text-decoration: underline;
 }
+
+/* width calculation for responsive breadcrumb */
 @media screen and (max-width: 875px){
   #breadcrumb {
     width: calc(100% - 40px);
   }
 }
+
 /* ====================== Map ====================== */
 #map {
   background-color: #ccc;
   height: 400px;
   width: 100%;
 }
+
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   width: 100%;
@@ -209,6 +210,7 @@ nav h1 a {
   text-transform: uppercase;
 }
 
+/* responsive styling */
 @media screen and (max-width: 400px){
   #restaurants-list li {
     width: 80vw;
