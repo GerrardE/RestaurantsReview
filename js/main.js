@@ -210,11 +210,18 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   });
 } */
 
-// if browser supports the service worker,
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-  .register('js/sw.js')
-  .catch(function(){
-      console.log('Error in Registration');
-  })
+//make sure sw.js is supported
+
+if ('serviceWorker' in navigator){
+  console.log('Service worker supported');
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker
+    .register('js/sw.js')
+    .then((reg) => {
+      console.log('Service Worker: Registered')
+    })
+    .catch((error) => {
+      console.log(`Service Worker: Error: ${error}`)
+    })
+  });
 }

@@ -170,7 +170,7 @@ createReviewHTML = (review) => {
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
-  comments.className = 'review-comment'
+  comments.className = 'review-comment';
   rbody.appendChild(comments);
 
   li.appendChild(rhead);
