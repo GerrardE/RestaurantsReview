@@ -217,7 +217,7 @@ if ('serviceWorker' in navigator){
   console.log('Service worker supported');
   window.addEventListener('load', ()=>{
     navigator.serviceWorker
-    .register('/sw.js')
+    .register('sw.js')
     .then((reg) => {
       console.log('Service Worker: Registered')
     })
